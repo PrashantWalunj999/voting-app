@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '210edebf-5b03-4728-a1e8-62697791e134'
+  dockerRegistryServiceConnection: 'DockerHubRegistry'#'210edebf-5b03-4728-a1e8-62697791e134'
 
   #vote
   imageRepository-vote: 'prashantwalunjvotingapp-vote'
