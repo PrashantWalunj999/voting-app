@@ -19,6 +19,14 @@ variables:
   #result
   imageRepository-result: 'prashantwalunjvotingapp-result'
   dockerfilePath-result: '$(Build.SourcesDirectory)/result/Dockerfile'
+  
+  #worker
+  imageRepository-worker: 'prashantwalunjvotingapp-worker'
+  dockerfilePath-worker: '$(Build.SourcesDirectory)/result/Dockerfile'
+
+  #seed-data
+  imageRepository-seed-data: 'prashantwalunjvotingapp-seed-data'
+  dockerfilePath-seed-data: '$(Build.SourcesDirectory)/seed-data/Dockerfile'
 
   containerRegistry: 'votingapp999.azurecr.io'
   tag: '$(Build.BuildId)'
@@ -45,11 +53,29 @@ stages:
         tags: |
           $(tag)
     - task: Docker@2
-      displayName: vote-Build and push an image to container registry
+      displayName: vote-Build and push an image to ACR
       inputs:
         command: 'buildAndPush'
         repository: '$(imageRepository-vote)'
         Dockerfile: $(dockerfilePath-vote)
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        tags: 
+          $(tag)
+    - task: Docker@2
+      displayName: worker-Build and push an image to ACR
+      inputs:
+        command: 'buildAndPush'
+        repository: '$(imageRepository-worker)'
+        Dockerfile: $(dockerfilePath-worker)
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        tags: 
+          $(tag)
+    - task: Docker@2
+      displayName: seed-data-Build and push an image to ACR
+      inputs:
+        command: 'buildAndPush'
+        repository: '$(imageRepository-seed-data)'
+        Dockerfile: $(dockerfilePath-seed-data)
         containerRegistry: '$(dockerRegistryServiceConnection)'
         tags: 
           $(tag)
