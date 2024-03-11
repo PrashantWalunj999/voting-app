@@ -51,4 +51,5 @@ stages:
         repository: '$(imageRepository)'
         Dockerfile: $(dockerfilePath-vote)
         containerRegistry: '$(dockerRegistryServiceConnection)'
-        tags: '$(tag)'
+        tags: 
+          $(tag)
