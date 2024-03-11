@@ -36,7 +36,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: result-Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository-result)
@@ -45,7 +45,7 @@ stages:
         tags: |
           $(tag)
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: vote-Build and push an image to container registry
       inputs:
         command: 'buildAndPush'
         repository: '$(imageRepository-vote)'
